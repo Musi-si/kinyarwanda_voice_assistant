@@ -31,7 +31,7 @@ It uses speech recognition, simple intent matching, and text-to-speech — makin
    ```
    ```bash
    choco install ffmpeg
-
-4.  **Usage (run)**:
-   ```bash
-   python main.py
+   ```
+   4.  **Usage (run)**:
+      ```bash
+      python main.py
