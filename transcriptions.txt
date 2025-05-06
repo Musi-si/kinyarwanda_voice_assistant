@@ -1,0 +1,10 @@
+01.wav: amakuru
+02.wav: mwaramutse
+03.wav: sawa
+04.wav: umeze ute
+05.wav: ndarwaye
+06.wav: ndishimye
+07.wav: witwa nde
+08.wav: ukora iki
+09.wav: nkeneye ubufasha
+10.wav: Rwanda Coding Academy iherereye he?
