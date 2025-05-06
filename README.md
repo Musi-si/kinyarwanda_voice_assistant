@@ -28,7 +28,7 @@ It uses speech recognition, simple intent matching, and text-to-speech — makin
 3. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
-
+   ```
    ```bash
    choco install ffmpeg
 
