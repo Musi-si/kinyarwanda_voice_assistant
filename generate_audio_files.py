@@ -1,8 +1,8 @@
-from gtts import gTTS
-from pydub import AudioSegment
 import os
+import sounddevice as sd
+import soundfile as sf
 
-# Mapping of filenames to Kinyarwanda transcriptions
+# Phrases and filenames
 transcriptions = {
     '01.wav': 'amakuru',
     '02.wav': 'mwaramutse',
@@ -19,21 +19,19 @@ transcriptions = {
 # Output folder
 os.makedirs( 'audio_samples', exist_ok = True )
 
-for filename, text in transcriptions.items():
-    print( f'Generating { filename } for text: { text }' )
+def record_audio( file, duration = 3, sample_rate = 16000 ):
+    print( f'🎙️ Vuga: "{ transcriptions[ file ] }"' )
+    print( '👉 Turimo gufata amajwi... tangira kuvuga!' )
+    
+    recording = sd.rec( int( duration * sample_rate ), samplerate = sample_rate, channels = 1, dtype = 'int16' )
+    sd.wait()  # Wait until recording is finished
 
-    # gTTS generates mp3
-    tts = gTTS( text = text, lang = 'sw' )
-    mp3_path = f'audio_samples/{ filename.replace( '.wav', '.mp3' ) }'
-    wav_path = f'audio_samples/{ filename }'
+    filepath = f'audio_samples/{ file }'
+    sf.write( filepath, recording, sample_rate )
+    print( f'✅ Amajwi abitswe nka: { filepath }\n' )
 
-    tts.save( mp3_path )
+for file in transcriptions:
+    input( '>> Kanda "Enter" igihe witeguye gufata ijwi...' )
+    record_audio( file )
 
-    # Convert mp3 to wav
-    sound = AudioSegment.from_mp3( mp3_path )
-    sound.export( wav_path, format = 'wav' )
-
-    # Optional: remove intermediate mp3
-    os.remove( mp3_path )
-
-print( '✅ All WAV files generated in "audio_samples/"' )
+print( '🎉 Amajwi yose yafashwe, abitswe muri "audio_samples/"' )
